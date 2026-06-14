@@ -1,0 +1,260 @@
+<div class="sec-banner" style="background:#1B5E20">📅 CRITICAL PATH METHOD (CPM) – Phương pháp Đường Găng</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Khái niệm</div>
+      <div class="ch-cell">Định nghĩa</div>
+      <div class="ch-cell">🧠 ELI5</div>
+      <div class="ch-cell">💡 Mẹo thi</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Critical Path</div>
+      <div class="cn">Chuỗi tasks dài nhất từ Start đến Finish của dự án. Xác định thời gian ngắn nhất có thể hoàn thành
+        dự án.</div>
+      <div class="cn">Con đường dài nhất qua mê cung = không có lối tắt. Đi nhanh hơn = phải rút ngắn con đường này.
+      </div>
+      <div class="cn">⭐ Critical Path có Total Float = 0. Trễ bất kỳ task nào trên CP → Trễ cả dự án. Dự án có thể có
+        NHIỀU critical paths.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Total Float<br>(Slack)</div>
+      <div class="cn">Thời gian một task có thể bị trễ mà KHÔNG làm trễ ngày kết thúc dự án.<br>Total Float = LS – ES =
+        LF – EF</div>
+      <div class="cn">Taxi có thể chậm 15 phút mà vẫn kịp chuyến bay → Float = 15 phút.</div>
+      <div class="cn">Critical Path tasks: Float = 0. Float âm = Project đang trễ, phải compress. Float dương = có room.
+      </div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Free Float</div>
+      <div class="cn">Thời gian một task có thể bị trễ mà KHÔNG làm trễ task KẾ TIẾP (successor) sớm nhất.<br>Free Float
+        = ES(successor) – EF(current task)</div>
+      <div class="cn">Taxi chậm 15 phút nhưng vẫn đưa đồng nghiệp kịp trước khi anh ta cần đi họp → Free Float của
+        chuyến đó = 15 phút.</div>
+      <div class="cn">Free Float ≤ Total Float. Nếu Float = 0 thì cả 2 đều = 0 (critical). Free Float hữu ích khi
+        schedule 1 task độc lập.</div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 FORWARD PASS & BACKWARD PASS – Tính ES/EF/LS/LF</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Bước</div>
+      <div class="ch-cell">Công thức</div>
+      <div class="ch-cell">🧠 Quy tắc</div>
+      <div class="ch-cell">💡 Ví dụ</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">ES – Early Start<br>(Bắt đầu sớm nhất)</div>
+      <div class="cn">ES = Max(EF của tất cả predecessors)<br>Task đầu tiên: ES = 0 (hoặc 1 tùy convention)</div>
+      <div class="cn">Không thể bắt đầu task B cho đến khi TẤT CẢ predecessors của B xong. Phải đợi cái chậm nhất.</div>
+      <div class="cn">A xong ngày 5, C xong ngày 8 → B có ES = 8 (phải đợi C xong).</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">EF – Early Finish<br>(Kết thúc sớm nhất)</div>
+      <div class="cn">EF = ES + Duration – 1<br>(Nếu dùng convention bắt đầu từ 1)<br>Hoặc EF = ES + Duration (nếu
+        convention bắt đầu từ 0)</div>
+      <div class="cn">Bắt đầu ngày ES, làm trong Duration ngày → Xong ngày EF.</div>
+      <div class="cn">ES=3, Duration=4 ngày → EF=6 (ngày 3,4,5,6). Chú ý convention đề đang dùng.</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">LF – Late Finish<br>(Kết thúc muộn nhất)</div>
+      <div class="cn">LF = Min(LS của tất cả successors)<br>Task cuối cùng: LF = EF của project</div>
+      <div class="cn">Backward pass: Đi ngược từ cuối dự án. LF của task = ngày muộn nhất task phải xong mà không làm
+        trễ project.</div>
+      <div class="cn">B cần xong trước ngày 10 (LF=10). Duration B = 3 ngày → LS = 10-3+1 = 8.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">LS – Late Start<br>(Bắt đầu muộn nhất)</div>
+      <div class="cn">LS = LF – Duration + 1</div>
+      <div class="cn">Ngày muộn nhất có thể bắt đầu mà vẫn kịp finish đúng LF.</div>
+      <div class="cn">LF=10, Duration=3 → LS=8. Bắt đầu ngày 8, ngày 8+9+10 = 3 ngày, xong đúng ngày 10. ✓</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Total Float Calculation</div>
+      <div class="cn">Total Float = LS – ES = LF – EF<br>Critical Path: Float = 0<br>Near-Critical: Float = 1-3 ngày
+        (cần watch closely)</div>
+      <div class="cn">ES=3, LS=5 → Float = 2 ngày. Task này có thể trễ tối đa 2 ngày mà không ảnh hưởng project end
+        date.</div>
+      <div class="cn">⭐ Nếu Float âm: Project đang BỊ TRỄ. Phải crash hoặc fast track. Báo cáo cho Sponsor ngay.</div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 VÍ DỤ TÍNH CPM – Thực hành tay</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Task</div>
+      <div class="ch-cell">Duration</div>
+      <div class="ch-cell">Predecessor</div>
+      <div class="ch-cell">Tính ES / EF / LS / LF / Float</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">A (Start)</div>
+      <div class="cn">3 ngày</div>
+      <div class="cn">None</div>
+      <div class="cn">ES=1, EF=3 | (backward sau) LS=1, LF=3 | Float=0 ✦ CRITICAL</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">B</div>
+      <div class="cn">4 ngày</div>
+      <div class="cn">A</div>
+      <div class="cn">ES=4, EF=7 | LS=4, LF=7 | Float=0 ✦ CRITICAL</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">C</div>
+      <div class="cn">2 ngày</div>
+      <div class="cn">A</div>
+      <div class="cn">ES=4, EF=5 | LS=6, LF=7 | Float=2 (không critical)</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">D (End)</div>
+      <div class="cn">3 ngày</div>
+      <div class="cn">B, C</div>
+      <div class="cn">ES=max(7,5)+1=8, EF=10 | LS=8, LF=10 | Float=0 ✦ CRITICAL</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">→ Critical Path</div>
+      <div class="cn" style="font-weight:700;color:#1B5E20">A → B → D = 3+4+3 = 10 ngày</div>
+      <div class="cn">Path A→C→D = 3+2+3 = 8 ngày (không critical, float=2)</div>
+      <div class="cn">Project duration = 10 ngày. Trễ A, B, hoặc D bất kỳ ngày nào → Project trễ.</div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 PERT – 3-POINT ESTIMATION</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Công thức</div>
+      <div class="ch-cell">Các tham số</div>
+      <div class="ch-cell">🧠 ELI5</div>
+      <div class="ch-cell">💡 Mẹo thi</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">PERT Expected Duration<br>= (O + 4M + P) / 6</div>
+      <div class="cn">O = Optimistic (tốt nhất, mọi thứ thuận lợi)<br>M = Most Likely (thực tế nhất)<br>P = Pessimistic
+        (xấu nhất, mọi thứ sai)<br>M được nhân 4 vì quan trọng nhất</div>
+      <div class="cn">Ước tính thực tế: "Lạc quan thì 2 ngày, thực tế 4 ngày, xấu nhất 12 ngày" → PERT = (2+4×4+12)/6 =
+        (2+16+12)/6 = 5 ngày.</div>
+      <div class="cn">⭐ PERT gần Most Likely hơn. Nếu P rất lớn → PERT bị kéo cao. Dùng khi uncertainty cao.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Standard Deviation (SD)<br>= (P – O) / 6</div>
+      <div class="cn">Đo độ không chắc chắn của estimate. SD lớn = Uncertainty cao.</div>
+      <div class="cn">Range càng rộng (P-O lớn) → Càng không chắc chắn.</div>
+      <div class="cn">VD: O=2, P=12 → SD=(12-2)/6=1.67. Estimate ±1.67 ngày với confidence 68%.</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Variance = SD²<br>= ((P – O) / 6)²</div>
+      <div class="cn">Phương sai. Cộng variances của critical path tasks → Project variance → Project SD.</div>
+      <div class="cn">Cộng variance (không phải SD) của các tasks để tính project-level uncertainty.</div>
+      <div class="cn">VD: 3 tasks trên CP có variance 1, 4, 2 → Project variance=7 → Project SD=√7≈2.65 ngày.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Triangular Distribution<br>= (O + M + P) / 3</div>
+      <div class="cn">Đơn giản hơn PERT, không nhân 4 cho M. Ít phổ biến hơn.</div>
+      <div class="cn">Trung bình đơn giản của 3 điểm.</div>
+      <div class="cn">Đề hỏi "3-point estimate" không nói rõ → Thường là PERT. Nếu nói "triangular" → dùng (O+M+P)/3.
+      </div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 SCHEDULE COMPRESSION – Rút ngắn Lịch trình</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Kỹ thuật</div>
+      <div class="ch-cell">Cơ chế</div>
+      <div class="ch-cell">🎯 Hậu quả / Đánh đổi</div>
+      <div class="ch-cell">💡 Khi nào dùng</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Fast Tracking</div>
+      <div class="cn">Làm song song các tasks vốn phải làm tuần tự. Overlap activities trên critical path.</div>
+      <div class="cn">⚠️ Tăng RISK và khả năng rework. Có thể làm tăng cost gián tiếp; mục tiêu chính là overlap công
+        việc thay vì bổ sung resources.</div>
+      <div class="cn">Khi cần rút ngắn schedule mà không có budget thêm. Chỉ áp dụng cho critical path tasks.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Crashing</div>
+      <div class="cn">Thêm resources (người, thiết bị, OT) vào critical path tasks để làm nhanh hơn.</div>
+      <div class="cn">⚠️ Thường tăng COST. Không mặc định giảm risk hoặc cải thiện quality; thêm người có thể tạo
+        coordination overhead và không phải activity nào cũng crash được.</div>
+      <div class="cn">Khi có budget. Phân tích cost-benefit: Crash task nào cho schedule reduction nhiều nhất với cost
+        ít nhất (crash cost per day).</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">⭐ Fast Track vs Crash Decision</div>
+      <div class="cn">Phân tích critical path, tính khả thi, cost-benefit, risk và resource constraints rồi chọn Crash,
+        Fast Track hoặc kết hợp. Không có thứ tự mặc định.</div>
+      <div class="cn">Fast Track: "Làm nhanh hơn bằng cách chấp nhận rủi ro." Crash: "Bỏ tiền ra để mua thời gian."
+      </div>
+      <div class="cn">Bẫy thi: Fast Tracking KHÔNG đảm bảo giảm schedule nếu tasks không thực sự có thể chạy song song
+        (ví dụ: cần output của task trước).</div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 DEPENDENCY TYPES – Các loại phụ thuộc</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Loại</div>
+      <div class="ch-cell">Ký hiệu</div>
+      <div class="ch-cell">🧠 Nghĩa là</div>
+      <div class="ch-cell">💡 Ví dụ</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Finish-to-Start (FS)<br>Phổ biến nhất</div>
+      <div class="cn">A phải XONGtrước thì B mới có thể BẮT ĐẦU.<br>Lag: B bắt đầu sau A xong + N ngày.<br>Lead: B bắt
+        đầu trước A xong N ngày (overlap).</div>
+      <div class="cn">Xây móng xong mới xây tường được.</div>
+      <div class="cn">Lead cho phép successor bắt đầu sớm hơn; lag tạo thời gian chờ. Không đồng nhất mọi lead với Fast
+        Tracking và không học dấu âm/dương nếu đề không quy định convention.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Start-to-Start (SS)</div>
+      <div class="cn">A BẮT ĐẦU thì B mới có thể BẮT ĐẦU (không cần A xong).</div>
+      <div class="cn">Đổ bê tông bắt đầu → Đội hoàn thiện bắt đầu ngay (làm song song từ đầu).</div>
+      <div class="cn">Thường dùng trong parallel work streams. SS+Lag: B bắt đầu sau A bắt đầu N ngày.</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Finish-to-Finish (FF)</div>
+      <div class="cn">A phải XONG thì B mới có thể XONG.</div>
+      <div class="cn">QA testing không thể kết thúc cho đến khi coding kết thúc.</div>
+      <div class="cn">B có thể bắt đầu sớm nhưng không thể kết thúc trước A.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Start-to-Finish (SF)<br>Hiếm nhất</div>
+      <div class="cn">A BẮT ĐẦU thì B mới có thể XONG. Rất hiếm trong thực tế.</div>
+      <div class="cn">Ca trực mới (A) bắt đầu → Ca cũ (B) mới được về (kết thúc).</div>
+      <div class="cn">Biết để nhận ra trong đề, nhưng không cần dùng nhiều trong thực tế.</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Mandatory vs Discretionary<br>vs External</div>
+      <div class="cn">Mandatory (Hard Logic): Bắt buộc về mặt kỹ thuật/pháp lý. Không thể thay đổi. VD: Đổ móng trước
+        khi xây cột.<br>Discretionary (Soft Logic): Theo best practice, có thể thay đổi. VD: Thường test sau
+        code.<br>External: Phụ thuộc ngoài dự án. VD: Chờ vendor deliver server.</div>
+      <div class="cn">Hard = luật trọng lực. Soft = thói quen tốt. External = chờ người khác.</div>
+      <div class="cn">⭐ Fast Tracking chỉ áp dụng được với Discretionary dependencies! Mandatory dependencies KHÔNG thể
+        fast track.</div>
+    </div>
+
+    <div class="sec-banner" style="background:#1B5E20">📅 SCHEDULE BASELINE & CONTROL</div>
+    <div class="col-hdr" style="background:#1B5E20">
+      <div class="ch-cell">Khái niệm</div>
+      <div class="ch-cell">Mô tả</div>
+      <div class="ch-cell">🧠 ELI5</div>
+      <div class="ch-cell">💡 Mẹo thi</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Schedule Baseline</div>
+      <div class="cn">Phiên bản approved của Schedule Model. Dùng để so sánh với thực tế. Chỉ thay đổi qua Change
+        Request chính thức.</div>
+      <div class="cn">Bản kế hoạch "đóng dấu" ban đầu. Mọi deviation phải giải thích và phê duyệt.</div>
+      <div class="cn">Không được tự ý cập nhật baseline vì thực tế trễ → Phải submit CR. "Replanning" = CR + New
+        Baseline.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Schedule Variance (SV)<br>= EV – PV</div>
+      <div class="cn">SV dương = Nhanh hơn kế hoạch. SV âm = Chậm hơn kế hoạch.</div>
+      <div class="cn">SV = -$5,000: Đang chậm, chưa earn đủ value như kế hoạch.</div>
+      <div class="cn">SV cuối dự án luôn = 0 (vì EV=PV=BAC khi xong). Dùng SPI để track đến cuối.</div>
+    </div>
+    <div class="drow" style="background:#E8F5E9">
+      <div class="c0" style="color:#1B5E20">Schedule Performance Index (SPI)<br>= EV / PV</div>
+      <div class="cn">SPI &gt; 1: Nhanh hơn kế hoạch. SPI &lt; 1: Chậm hơn kế hoạch. SPI = 1: Đúng kế hoạch.</div>
+      <div class="cn">SPI = 0.8: Với mỗi $1 schedule value đáng ra phải earn, chỉ earn được $0.80.</div>
+      <div class="cn">⭐ Hay thi: SPI = 0.8 và CPI = 1.2 → Chậm tiến độ NHƯNG tiết kiệm chi phí. Hai chỉ số này độc lập
+        nhau.</div>
+    </div>
+    <div class="drow" style="background:#ffffff">
+      <div class="c0" style="color:#1B5E20">Schedule Forecasting</div>
+      <div class="cn">Có thể dùng Duration at Completion / SPI như một forecast đơn giản khi giả định hiệu suất tiếp
+        tục; đáng tin hơn là re-analyze schedule network/critical path với actuals và remaining estimates.</div>
+      <div class="cn">Tốc độ hiện tại = SPI. Nếu tiếp tục rate này, dự án sẽ xong vào lúc nào?</div>
+      <div class="cn">Dùng để báo cáo Sponsor: "Với SPI hiện tại, dự án sẽ xong ngày X thay vì ngày Y như kế hoạch."
+      </div>
+    </div>

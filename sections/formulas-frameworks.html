@@ -1,0 +1,1895 @@
+<style>
+        /* ── SCOPED BEAUTIFUL FORMULAS STYLES ── */
+
+        :root {
+          --ink: #0F1923;
+          --paper: #F7F4EF;
+          --gold: #C8922A;
+          --gold-light: #F5E9D0;
+          --gold-pale: #FBF5E8;
+          --red: #C0392B;
+          --red-light: #FDECEA;
+          --green: #1A6B2A;
+          --green-light: #E8F5E9;
+          --blue: #1565C0;
+          --blue-light: #E3F0FF;
+          --purple: #4A148C;
+          --purple-light: #F3E5F5;
+          --teal: #006064;
+          --teal-light: #E0F7FA;
+          --orange: #E65100;
+          --orange-light: #FFF3E0;
+          --border: #E0D9CE;
+          --shadow: 0 2px 20px rgba(15, 25, 35, 0.08);
+          --shadow-lg: 0 8px 40px rgba(15, 25, 35, 0.14);
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          font-family: 'DM Sans', sans-serif;
+          background: var(--paper);
+          color: var(--ink);
+          min-height: 100vh;
+        }
+
+        /* ── HEADER ──────────────────────────────────── */
+        .hero {
+          background: var(--ink);
+          color: #fff;
+          padding: 48px 40px 40px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero::before {
+          content: '';
+          position: absolute;
+          top: -60px;
+          right: -60px;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(200, 146, 42, .25) 0%, transparent 70%);
+        }
+
+        .hero::after {
+          content: '';
+          position: absolute;
+          bottom: -40px;
+          left: 20%;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(200, 146, 42, .12) 0%, transparent 70%);
+        }
+
+        .hero-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 12px;
+        }
+
+        .hero h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: 38px;
+          font-weight: 700;
+          line-height: 1.15;
+          margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+          color: var(--gold);
+        }
+
+        .hero-sub {
+          font-size: 14px;
+          color: rgba(255, 255, 255, .55);
+          max-width: 500px;
+        }
+
+        .hero-nav {
+          display: flex;
+          gap: 8px;
+          margin-top: 28px;
+          flex-wrap: wrap;
+        }
+
+        .hero-chip {
+          padding: 6px 14px;
+          border-radius: 20px;
+          border: 1.5px solid rgba(255, 255, 255, .15);
+          font-size: 12px;
+          color: rgba(255, 255, 255, .7);
+          cursor: pointer;
+          transition: all .2s;
+          text-decoration: none;
+          font-weight: 500;
+        }
+
+        .hero-chip:hover,
+        .hero-chip.active {
+          background: var(--gold);
+          border-color: var(--gold);
+          color: var(--ink);
+        }
+
+        /* ── LAYOUT ──────────────────────────────────── */
+        .page {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 40px 32px 80px;
+        }
+
+        /* ── SECTION HEADER ──────────────────────────── */
+        .section {
+          margin-bottom: 48px;
+          scroll-margin-top: 24px;
+        }
+
+        .section-head {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 20px;
+          padding-bottom: 14px;
+          border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+          width: 42px;
+          height: 42px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+
+        .section-head h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--ink);
+        }
+
+        .section-head p {
+          font-size: 12.5px;
+          color: #666;
+          margin-top: 2px;
+        }
+
+        /* ── EVM GRID ────────────────────────────────── */
+        .evm-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 14px;
+        }
+
+        .formula-card {
+          background: #fff;
+          border-radius: 14px;
+          border: 1.5px solid var(--border);
+          padding: 20px;
+          transition: all .2s;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .formula-card:hover {
+          box-shadow: var(--shadow-lg);
+          transform: translateY(-2px);
+          border-color: transparent;
+        }
+
+        .formula-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          border-radius: 14px 14px 0 0;
+        }
+
+        /* Card color variants */
+        .card-gold::before {
+          background: var(--gold);
+        }
+
+        .card-red::before {
+          background: var(--red);
+        }
+
+        .card-blue::before {
+          background: var(--blue);
+        }
+
+        .card-green::before {
+          background: var(--green);
+        }
+
+        .card-purple::before {
+          background: var(--purple);
+        }
+
+        .card-teal::before {
+          background: var(--teal);
+        }
+
+        .card-badge {
+          font-family: 'DM Mono', monospace;
+          font-size: 9.5px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          padding: 3px 8px;
+          border-radius: 6px;
+          margin-bottom: 10px;
+          display: inline-block;
+        }
+
+        .badge-gold {
+          background: var(--gold-light);
+          color: var(--gold);
+        }
+
+        .badge-red {
+          background: var(--red-light);
+          color: var(--red);
+        }
+
+        .badge-blue {
+          background: var(--blue-light);
+          color: var(--blue);
+        }
+
+        .badge-green {
+          background: var(--green-light);
+          color: var(--green);
+        }
+
+        .badge-purple {
+          background: var(--purple-light);
+          color: var(--purple);
+        }
+
+        .badge-teal {
+          background: var(--teal-light);
+          color: var(--teal);
+        }
+
+        .card-name {
+          font-size: 13.5px;
+          font-weight: 700;
+          color: var(--ink);
+          margin-bottom: 2px;
+        }
+
+        .card-name-vi {
+          font-size: 11.5px;
+          color: #888;
+          margin-bottom: 14px;
+        }
+
+        .formula-box {
+          background: var(--ink);
+          color: #fff;
+          border-radius: 10px;
+          padding: 12px 16px;
+          font-family: 'DM Mono', monospace;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: .3px;
+          margin-bottom: 12px;
+          line-height: 1.6;
+        }
+
+        .formula-box .f-accent {
+          color: var(--gold);
+        }
+
+        .formula-box .f-op {
+          color: #94A3B8;
+        }
+
+        .formula-box .f-var {
+          color: #7DD3FC;
+        }
+
+        .formula-box .f-result {
+          color: #86EFAC;
+        }
+
+        .card-meaning {
+          font-size: 12.5px;
+          line-height: 1.6;
+          color: #444;
+          margin-bottom: 10px;
+        }
+
+        .card-tip {
+          font-size: 12px;
+          line-height: 1.55;
+          padding: 8px 12px;
+          border-radius: 8px;
+          border-left: 3px solid;
+        }
+
+        .tip-gold {
+          background: var(--gold-pale);
+          border-color: var(--gold);
+          color: #6B4C0A;
+        }
+
+        .tip-red {
+          background: var(--red-light);
+          border-color: var(--red);
+          color: #7B1A12;
+        }
+
+        .tip-green {
+          background: var(--green-light);
+          border-color: var(--green);
+          color: #0D3D17;
+        }
+
+        .tip-blue {
+          background: var(--blue-light);
+          border-color: var(--blue);
+          color: #0A2F6B;
+        }
+
+        .tip-purple {
+          background: var(--purple-light);
+          border-color: var(--purple);
+          color: #2A0666;
+        }
+
+        .tip-teal {
+          background: var(--teal-light);
+          border-color: var(--teal);
+          color: #003034;
+        }
+
+        /* ── SIGNAL PILLS ─────────────────────────────── */
+        .signals {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-top: 10px;
+        }
+
+        .signal {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 11.5px;
+          font-weight: 600;
+          padding: 4px 10px;
+          border-radius: 20px;
+        }
+
+        .signal-good {
+          background: #DCFCE7;
+          color: #166534;
+        }
+
+        .signal-bad {
+          background: #FEE2E2;
+          color: #991B1B;
+        }
+
+        .signal-info {
+          background: #DBEAFE;
+          color: #1E40AF;
+        }
+
+        /* ── WIDE CARD (Spans 2 cols) ─────────────────── */
+        .formula-card.wide {
+          grid-column: span 2;
+        }
+
+        @media(max-width: 700px) {
+          .formula-card.wide {
+            grid-column: span 1;
+          }
+        }
+
+        /* ── THREE-POINT TABLE ──────────────────────────── */
+        .compare-table {
+          width: 100%;
+          border-collapse: separate;
+          border-spacing: 0;
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1.5px solid var(--border);
+          background: #fff;
+        }
+
+        .compare-table th {
+          background: var(--ink);
+          color: #fff;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 12px 18px;
+          text-align: left;
+          letter-spacing: .3px;
+        }
+
+        .compare-table th:first-child {
+          border-radius: 0;
+        }
+
+        .compare-table td {
+          padding: 14px 18px;
+          font-size: 13px;
+          line-height: 1.6;
+          border-bottom: 1px solid var(--border);
+          vertical-align: top;
+        }
+
+        .compare-table tr:last-child td {
+          border-bottom: none;
+        }
+
+        .compare-table tr:nth-child(even) td {
+          background: #FAFAF8;
+        }
+
+        .compare-table .mono {
+          font-family: 'DM Mono', monospace;
+          font-size: 13.5px;
+          font-weight: 500;
+          color: var(--ink);
+        }
+
+        .compare-table .tag {
+          display: inline-block;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          padding: 2px 8px;
+          border-radius: 5px;
+          margin-bottom: 4px;
+        }
+
+        /* ── COMM CHANNEL DEMO ──────────────────────────── */
+        .comm-demo {
+          background: #fff;
+          border: 1.5px solid var(--border);
+          border-radius: 14px;
+          padding: 24px;
+        }
+
+        .comm-formula-big {
+          text-align: center;
+          font-family: 'DM Mono', monospace;
+          font-size: 28px;
+          font-weight: 500;
+          color: var(--ink);
+          margin: 16px 0;
+          letter-spacing: 1px;
+        }
+
+        .comm-formula-big .highlight {
+          color: var(--gold);
+        }
+
+        .comm-examples {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          margin-top: 20px;
+        }
+
+        .comm-ex {
+          background: var(--paper);
+          border-radius: 10px;
+          padding: 14px;
+          text-align: center;
+        }
+
+        .comm-ex-n {
+          font-size: 28px;
+          font-weight: 700;
+          color: var(--blue);
+          font-family: 'Playfair Display', serif;
+        }
+
+        .comm-ex-label {
+          font-size: 11px;
+          color: #888;
+          margin: 2px 0 6px;
+        }
+
+        .comm-ex-result {
+          font-family: 'DM Mono', monospace;
+          font-size: 13px;
+          color: var(--ink);
+          font-weight: 500;
+        }
+
+        .comm-note {
+          font-size: 12px;
+          color: #666;
+          text-align: center;
+          margin-top: 14px;
+          padding: 10px;
+          background: var(--gold-pale);
+          border-radius: 8px;
+        }
+
+        /* ── CONFLICT TABLE ──────────────────────────── */
+        .conflict-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .conflict-item {
+          display: grid;
+          grid-template-columns: 220px 1fr 1fr;
+          gap: 0;
+          background: #fff;
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
+          overflow: hidden;
+          transition: box-shadow .2s;
+        }
+
+        .conflict-item:hover {
+          box-shadow: var(--shadow);
+        }
+
+        .conflict-name {
+          padding: 16px 18px;
+          font-weight: 700;
+          font-size: 13.5px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          border-right: 1.5px solid var(--border);
+        }
+
+        .conflict-desc {
+          padding: 16px 18px;
+          font-size: 12.5px;
+          line-height: 1.6;
+          color: #444;
+          border-right: 1.5px solid var(--border);
+        }
+
+        .conflict-tip {
+          padding: 16px 18px;
+          font-size: 12px;
+          line-height: 1.6;
+          color: #555;
+        }
+
+        .rank-badge {
+          font-size: 9px;
+          font-weight: 800;
+          padding: 2px 7px;
+          border-radius: 5px;
+          letter-spacing: .5px;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+
+        .rank-best {
+          background: #DCFCE7;
+          color: #166534;
+        }
+
+        .rank-good {
+          background: #DBEAFE;
+          color: #1E40AF;
+        }
+
+        .rank-ok {
+          background: #FEF3C7;
+          color: #92400E;
+        }
+
+        .rank-bad {
+          background: #FEE2E2;
+          color: #991B1B;
+        }
+
+        .rank-crisis {
+          background: #F3E8FF;
+          color: #6B21A8;
+        }
+
+        /* ── POWER GRID ────────────────────────────────── */
+        .power-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 12px;
+        }
+
+        .power-card {
+          background: #fff;
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
+          padding: 18px;
+          transition: all .2s;
+        }
+
+        .power-card:hover {
+          box-shadow: var(--shadow);
+          transform: translateY(-1px);
+        }
+
+        .power-icon {
+          font-size: 22px;
+          margin-bottom: 10px;
+        }
+
+        .power-name {
+          font-size: 13.5px;
+          font-weight: 700;
+          margin-bottom: 4px;
+        }
+
+        .power-source {
+          font-size: 12px;
+          color: #666;
+          margin-bottom: 10px;
+          line-height: 1.5;
+        }
+
+        .power-verdict {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: .5px;
+          text-transform: uppercase;
+          padding: 4px 10px;
+          border-radius: 20px;
+          display: inline-block;
+        }
+
+        .verdict-love {
+          background: #DCFCE7;
+          color: #166534;
+        }
+
+        .verdict-ok {
+          background: #FEF3C7;
+          color: #92400E;
+        }
+
+        .verdict-no {
+          background: #FEE2E2;
+          color: #991B1B;
+        }
+
+        /* ── MOTIVATION CARDS ──────────────────────────── */
+        .motivation-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 14px;
+        }
+
+        .motiv-card {
+          background: #fff;
+          border: 1.5px solid var(--border);
+          border-radius: 14px;
+          overflow: hidden;
+          transition: all .2s;
+        }
+
+        .motiv-card:hover {
+          box-shadow: var(--shadow-lg);
+          transform: translateY(-2px);
+        }
+
+        .motiv-header {
+          padding: 16px 20px;
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .motiv-num {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'Playfair Display', serif;
+          font-size: 16px;
+          font-weight: 700;
+          color: #fff;
+          flex-shrink: 0;
+        }
+
+        .motiv-title {
+          font-size: 14px;
+          font-weight: 700;
+        }
+
+        .motiv-subtitle {
+          font-size: 11.5px;
+          color: #888;
+          margin-top: 1px;
+        }
+
+        .motiv-body {
+          padding: 0 20px 18px;
+          font-size: 12.5px;
+          line-height: 1.7;
+          color: #444;
+        }
+
+        .motiv-trap {
+          margin: 10px 20px 18px;
+          padding: 10px 14px;
+          border-radius: 8px;
+          font-size: 12px;
+          line-height: 1.55;
+          border-left: 3px solid;
+        }
+
+        /* ── CONTRACT TABLE ─────────────────────────────── */
+        .contract-table {
+          width: 100%;
+          border-collapse: separate;
+          border-spacing: 0;
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1.5px solid var(--border);
+        }
+
+        .contract-table th {
+          background: var(--ink);
+          color: #fff;
+          padding: 13px 16px;
+          font-size: 12px;
+          font-weight: 600;
+          text-align: left;
+          letter-spacing: .3px;
+        }
+
+        .contract-table td {
+          padding: 14px 16px;
+          font-size: 13px;
+          line-height: 1.55;
+          border-bottom: 1px solid var(--border);
+          background: #fff;
+          vertical-align: top;
+        }
+
+        .contract-table tr:last-child td {
+          border-bottom: none;
+        }
+
+        .contract-table tr:nth-child(even) td {
+          background: #FAFAF8;
+        }
+
+        .risk-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 3px 10px;
+          border-radius: 20px;
+        }
+
+        .risk-low {
+          background: #DCFCE7;
+          color: #166534;
+        }
+
+        .risk-mid {
+          background: #FEF3C7;
+          color: #92400E;
+        }
+
+        .risk-high {
+          background: #FEE2E2;
+          color: #991B1B;
+        }
+
+        .contract-name {
+          font-weight: 700;
+          font-size: 13.5px;
+          margin-bottom: 3px;
+        }
+
+        .contract-vi {
+          font-size: 11.5px;
+          color: #888;
+        }
+
+        /* ── SCENARIO TABLE ─────────────────────────────── */
+        .scenario-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .scenario-item {
+          display: grid;
+          grid-template-columns: 1fr 220px;
+          background: #fff;
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
+          overflow: hidden;
+          transition: box-shadow .2s;
+        }
+
+        .scenario-item:hover {
+          box-shadow: var(--shadow);
+        }
+
+        .scenario-left {
+          padding: 16px 20px;
+          border-right: 1.5px solid var(--border);
+        }
+
+        .scenario-title {
+          font-weight: 700;
+          font-size: 13.5px;
+          margin-bottom: 6px;
+        }
+
+        .scenario-keywords {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px;
+          color: var(--teal);
+          background: var(--teal-light);
+          padding: 4px 10px;
+          border-radius: 6px;
+          display: inline-block;
+          margin-bottom: 8px;
+        }
+
+        .scenario-answer {
+          font-size: 12.5px;
+          line-height: 1.6;
+          color: #444;
+        }
+
+        .scenario-right {
+          padding: 16px 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .answer-pill {
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--green);
+          background: var(--green-light);
+          padding: 6px 14px;
+          border-radius: 8px;
+          line-height: 1.5;
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media(max-width: 768px) {
+          .hero {
+            padding: 32px 20px 28px;
+          }
+
+          .hero h1 {
+            font-size: 26px;
+          }
+
+          .page {
+            padding: 28px 16px 60px;
+          }
+
+          .conflict-item {
+            grid-template-columns: 1fr;
+          }
+
+          .conflict-name {
+            border-right: none;
+            border-bottom: 1.5px solid var(--border);
+          }
+
+          .conflict-desc {
+            border-right: none;
+            border-bottom: 1.5px solid var(--border);
+          }
+
+          .comm-examples {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .scenario-item {
+            grid-template-columns: 1fr;
+          }
+
+          .scenario-right {
+            border-top: 1.5px solid var(--border);
+          }
+        }
+
+        /* ── SCROLL ANIMATIONS ───────────────────────────── */
+        .section {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeUp .5s ease forwards;
+        }
+
+        .section:nth-child(1) {
+          animation-delay: .05s;
+        }
+
+        .section:nth-child(2) {
+          animation-delay: .1s;
+        }
+
+        .section:nth-child(3) {
+          animation-delay: .15s;
+        }
+
+        .section:nth-child(4) {
+          animation-delay: .2s;
+        }
+
+        .section:nth-child(5) {
+          animation-delay: .25s;
+        }
+
+        .section:nth-child(6) {
+          animation-delay: .3s;
+        }
+
+        .section:nth-child(7) {
+          animation-delay: .35s;
+        }
+
+        @keyframes fadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+
+        /* Override hero to fit inside panel */
+        .hero {
+          border-radius: 10px;
+          margin-bottom: 0;
+        }
+
+        .page {
+          padding: 32px 20px 40px;
+          max-width: 100%;
+        }
+      </style>
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-label">📐 PMP Cheat Sheet · Formulas & Frameworks</div>
+        <h1>Công thức & Khung<br><span>Phải thuộc lòng để đỗ</span></h1>
+        <p class="hero-sub">12 chỉ số EVM · Ước lượng 3 điểm · Communication Channels · Conflict Resolution · Power
+          Types · Motivation Theories · Contract Types</p>
+        <nav class="hero-nav">
+          <a href="#evm" class="hero-chip active">💰 EVM</a>
+          <a href="#threepoint" class="hero-chip">📊 3-Point</a>
+          <a href="#comm" class="hero-chip">📡 Channels</a>
+          <a href="#conflict" class="hero-chip">⚔️ Conflict</a>
+          <a href="#power" class="hero-chip">👑 Power</a>
+          <a href="#motivation" class="hero-chip">🧠 Motivation</a>
+          <a href="#contracts" class="hero-chip">📝 Contracts</a>
+          <a href="#scenarios" class="hero-chip">🎯 Scenarios</a>
+        </nav>
+      </div>
+
+      <div class="page">
+
+        <!-- ══════════════════════════════════════════════
+     1. EVM
+══════════════════════════════════════════════ -->
+        <div class="section" id="evm">
+          <div class="section-head">
+            <div class="section-icon" style="background:#FEF3C7">💰</div>
+            <div>
+              <h2>Earned Value Management</h2>
+              <p>12 chỉ số đo lường hiệu suất Chi phí & Tiến độ – bắt buộc phải thuộc</p>
+            </div>
+          </div>
+
+          <!-- ROW 1: 3 baseline inputs -->
+          <div class="evm-grid" style="margin-bottom:14px">
+
+            <div class="formula-card card-blue">
+              <div class="card-badge badge-blue">Baseline Input</div>
+              <div class="card-name">PV – Planned Value</div>
+              <div class="card-name-vi">Giá trị kế hoạch (BCWS)</div>
+              <div class="formula-box">
+                <span class="f-result">PV</span> <span class="f-op">=</span> <span class="f-var">BAC</span> <span
+                  class="f-op">×</span> <span class="f-accent">% kế hoạch</span>
+              </div>
+              <div class="card-meaning">Số tiền <em>đáng lẽ phải tiêu</em> theo kế hoạch tính đến thời điểm này.</div>
+              <div class="card-tip tip-blue">💡 Còn gọi là <strong>BCWS</strong>. Là mốc chuẩn để so sánh.</div>
+            </div>
+
+            <div class="formula-card card-green">
+              <div class="card-badge badge-green">⭐ Quan trọng nhất</div>
+              <div class="card-name">EV – Earned Value</div>
+              <div class="card-name-vi">Giá trị thu được (BCWP)</div>
+              <div class="formula-box">
+                <span class="f-result">EV</span> <span class="f-op">=</span> <span class="f-var">BAC</span> <span
+                  class="f-op">×</span> <span class="f-accent">% hoàn thành thực tế</span>
+              </div>
+              <div class="card-meaning">Số tiền "kiếm được" tương ứng với khối lượng thực sự đã làm xong.</div>
+              <div class="card-tip tip-green">💡 <strong>EV là trung tâm của mọi công thức EVM</strong>. Nếu quên công
+                thức khác → dùng EV để suy ra.</div>
+            </div>
+
+            <div class="formula-card card-gold">
+              <div class="card-badge badge-gold">Baseline Input</div>
+              <div class="card-name">AC – Actual Cost</div>
+              <div class="card-name-vi">Chi phí thực tế (ACWP)</div>
+              <div class="formula-box">
+                <span class="f-result">AC</span> <span class="f-op">=</span> <span class="f-accent">Tổng tiền đã chi
+                  thực tế</span>
+              </div>
+              <div class="card-meaning">Số tiền đã thực sự chi ra, không phụ thuộc vào kế hoạch hay tiến độ.</div>
+              <div class="card-tip tip-gold">💡 AC không dùng công thức tính – đây là số liệu thực tế ghi nhận được.
+              </div>
+            </div>
+
+            <div class="formula-card card-gold">
+              <div class="card-badge badge-gold">Baseline Input</div>
+              <div class="card-name">BAC – Budget at Completion</div>
+              <div class="card-name-vi">Tổng ngân sách gốc</div>
+              <div class="formula-box">
+                <span class="f-result">BAC</span> <span class="f-op">=</span> <span class="f-accent">Tổng ngân sách phê
+                  duyệt</span>
+              </div>
+              <div class="card-meaning">Tổng số tiền được phê duyệt cho toàn bộ dự án từ đầu đến cuối.</div>
+              <div class="card-tip tip-gold">⚠️ BAC <strong>KHÔNG</strong> bao gồm Management Reserve. Việc sử dụng
+                Management Reserve tuân theo governance và delegated authority.</div>
+            </div>
+
+          </div>
+
+          <!-- ROW 2: Variance & Index -->
+          <div
+            style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin:20px 0 12px">
+            Variance (CV/SV) — Dương thuận lợi, âm bất lợi</div>
+          <div class="evm-grid" style="margin-bottom:14px">
+
+            <div class="formula-card card-red">
+              <div class="card-badge badge-red">Variance · Cost</div>
+              <div class="card-name">CV – Cost Variance</div>
+              <div class="card-name-vi">Chênh lệch chi phí</div>
+              <div class="formula-box">
+                <span class="f-result">CV</span> <span class="f-op">=</span> <span class="f-var">EV</span> <span
+                  class="f-op">–</span> <span class="f-var">AC</span>
+              </div>
+              <div class="signals">
+                <span class="signal signal-good">CV &gt; 0 → Tiết kiệm ✅</span>
+                <span class="signal signal-bad">CV &lt; 0 → Vượt ngân sách ❌</span>
+              </div>
+              <div class="card-tip tip-red" style="margin-top:10px">💡 Nhớ: <strong>EV – AC</strong>. EV trước, AC sau.
+                Âm là bad.</div>
+            </div>
+
+            <div class="formula-card card-red">
+              <div class="card-badge badge-red">Variance · Schedule</div>
+              <div class="card-name">SV – Schedule Variance</div>
+              <div class="card-name-vi">Chênh lệch tiến độ</div>
+              <div class="formula-box">
+                <span class="f-result">SV</span> <span class="f-op">=</span> <span class="f-var">EV</span> <span
+                  class="f-op">–</span> <span class="f-var">PV</span>
+              </div>
+              <div class="signals">
+                <span class="signal signal-good">SV &gt; 0 → Nhanh hơn ✅</span>
+                <span class="signal signal-bad">SV &lt; 0 → Trễ tiến độ ❌</span>
+              </div>
+              <div class="card-tip tip-red" style="margin-top:10px">💡 <strong>EV – PV</strong>. SV = 0 khi dự án kết
+                thúc (dù CPI vẫn &lt; 1).</div>
+            </div>
+
+          </div>
+
+          <div
+            style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin:8px 0 12px">
+            Performance Index (CPI/SPI) — &gt;1 thuận lợi, &lt;1 bất lợi</div>
+          <div class="evm-grid" style="margin-bottom:14px">
+
+            <div class="formula-card card-purple">
+              <div class="card-badge badge-purple">Index · Cost</div>
+              <div class="card-name">CPI – Cost Performance Index</div>
+              <div class="card-name-vi">Chỉ số hiệu suất chi phí</div>
+              <div class="formula-box">
+                <span class="f-result">CPI</span> <span class="f-op">=</span> <span class="f-var">EV</span> <span
+                  class="f-op">/</span> <span class="f-var">AC</span>
+              </div>
+              <div class="signals">
+                <span class="signal signal-good">CPI &gt; 1 → Tiết kiệm ✅</span>
+                <span class="signal signal-bad">CPI &lt; 1 → Lãng phí ❌</span>
+              </div>
+              <div class="card-meaning" style="margin-top:10px">CPI = 0.8 có nghĩa: cứ chi 1$ thì chỉ "kiếm được" giá
+                trị 0.8$.</div>
+              <div class="card-tip tip-purple">💡 CPI là chỉ số <strong>quan trọng nhất</strong> để tính EAC. Hay xuất
+                hiện trong đề thi.</div>
+            </div>
+
+            <div class="formula-card card-purple">
+              <div class="card-badge badge-purple">Index · Schedule</div>
+              <div class="card-name">SPI – Schedule Performance Index</div>
+              <div class="card-name-vi">Chỉ số hiệu suất tiến độ</div>
+              <div class="formula-box">
+                <span class="f-result">SPI</span> <span class="f-op">=</span> <span class="f-var">EV</span> <span
+                  class="f-op">/</span> <span class="f-var">PV</span>
+              </div>
+              <div class="signals">
+                <span class="signal signal-good">SPI &gt; 1 → Nhanh ✅</span>
+                <span class="signal signal-bad">SPI &lt; 1 → Chậm ❌</span>
+              </div>
+              <div class="card-meaning" style="margin-top:10px">SPI = 0.75 có nghĩa: chỉ hoàn thành được 75% so với kế
+                hoạch.</div>
+              <div class="card-tip tip-purple">💡 SPI → 1.0 ở cuối dự án khi mọi work đều được EV.</div>
+            </div>
+
+          </div>
+
+          <!-- ROW 3: Forecasts -->
+          <div
+            style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin:8px 0 12px">
+            Forecasts (Dự báo tương lai)</div>
+          <div class="evm-grid">
+
+            <div class="formula-card card-teal wide">
+              <div class="card-badge badge-teal">⭐ Forecast · Cost</div>
+              <div class="card-name">EAC – Estimate at Completion</div>
+              <div class="card-name-vi">Dự báo tổng chi phí khi hoàn thành</div>
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0">
+                <div>
+                  <div
+                    style="font-size:10px;font-weight:700;color:#006064;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">
+                    Phổ biến nhất ⭐</div>
+                  <div class="formula-box" style="font-size:13px">
+                    <span class="f-result">EAC</span> <span class="f-op">=</span> <span class="f-var">BAC</span> <span
+                      class="f-op">/</span> <span class="f-var">CPI</span>
+                  </div>
+                  <div style="font-size:11.5px;color:#555;margin-top:6px">Dùng khi: hiệu suất hiện tại sẽ tiếp tục đến
+                    cuối.</div>
+                </div>
+                <div>
+                  <div
+                    style="font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">
+                    Khi ETC thay đổi</div>
+                  <div class="formula-box" style="font-size:13px">
+                    <span class="f-result">EAC</span> <span class="f-op">=</span> <span class="f-var">AC</span> <span
+                      class="f-op">+</span> <span class="f-var">ETC</span>
+                  </div>
+                  <div style="font-size:11.5px;color:#555;margin-top:6px">Dùng khi: đã có ước tính mới cho phần còn lại.
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">
+                    Khi lỗi là tạm thời</div>
+                  <div class="formula-box" style="font-size:13px">
+                    <span class="f-result">EAC</span> <span class="f-op">=</span> <span class="f-var">AC</span> <span
+                      class="f-op">+</span> <span class="f-op">(</span><span class="f-var">BAC</span><span
+                      class="f-op">–</span><span class="f-var">EV</span><span class="f-op">)</span>
+                  </div>
+                  <div style="font-size:11.5px;color:#555;margin-top:6px">Dùng khi: vấn đề đã qua, phần còn lại làm đúng
+                    kế hoạch.</div>
+                </div>
+                <div>
+                  <div
+                    style="font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">
+                    Cost + Schedule cùng ảnh hưởng</div>
+                  <div class="formula-box" style="font-size:13px">
+                    <span class="f-result">EAC</span> <span class="f-op">=</span> <span class="f-var">AC</span> <span
+                      class="f-op">+</span> <span class="f-op">(</span><span class="f-var">BAC</span><span
+                      class="f-op">–</span><span class="f-var">EV</span><span class="f-op">)</span><span
+                      class="f-op"> / </span><span class="f-op">(</span><span class="f-var">CPI</span><span
+                      class="f-op">×</span><span class="f-var">SPI</span><span class="f-op">)</span>
+                  </div>
+                  <div style="font-size:11.5px;color:#555;margin-top:6px">Dùng khi cả hiệu suất chi phí và tiến độ sẽ
+                    ảnh hưởng phần việc còn lại.</div>
+                </div>
+              </div>
+              <div class="card-tip tip-teal">💡 Chọn công thức theo giả định trong câu hỏi; không có một công thức EAC
+                mặc định cho mọi tình huống.</div>
+            </div>
+
+            <div class="formula-card card-teal">
+              <div class="card-badge badge-teal">Forecast</div>
+              <div class="card-name">ETC – Estimate to Complete</div>
+              <div class="card-name-vi">Tiền cần thêm để hoàn thành</div>
+              <div class="formula-box">
+                <span class="f-result">ETC</span> <span class="f-op">=</span> <span class="f-var">EAC</span> <span
+                  class="f-op">–</span> <span class="f-var">AC</span>
+              </div>
+              <div class="card-meaning">Bao nhiêu tiền cần bỏ thêm từ bây giờ đến lúc xong?</div>
+              <div class="card-tip tip-teal">💡 <strong>ETC = tiền CẦN THÊM</strong>. EAC = tiền TỔNG CỘNG. Phân biệt
+                kỹ!</div>
+            </div>
+
+            <div class="formula-card card-teal">
+              <div class="card-badge badge-teal">Forecast</div>
+              <div class="card-name">VAC – Variance at Completion</div>
+              <div class="card-name-vi">Chênh lệch khi hoàn thành</div>
+              <div class="formula-box">
+                <span class="f-result">VAC</span> <span class="f-op">=</span> <span class="f-var">BAC</span> <span
+                  class="f-op">–</span> <span class="f-var">EAC</span>
+              </div>
+              <div class="signals">
+                <span class="signal signal-good">VAC &gt; 0 → Tiết kiệm ✅</span>
+                <span class="signal signal-bad">VAC &lt; 0 → Lỗ ❌</span>
+              </div>
+              <div class="card-tip tip-teal" style="margin-top:10px">💡 Dùng để báo cáo dự báo ngân sách cuối dự án cho
+                sếp.</div>
+            </div>
+
+            <div class="formula-card card-red">
+              <div class="card-badge badge-red">⭐ Advanced</div>
+              <div class="card-name">TCPI – To-Complete Perf. Index</div>
+              <div class="card-name-vi">Hiệu suất cần đạt để về đích</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0">
+                <div>
+                  <div style="font-size:10px;color:#888;margin-bottom:4px">Để đạt BAC:</div>
+                  <div class="formula-box" style="font-size:12px">
+                    <span class="f-result">TCPI</span> <span class="f-op">=</span>
+                    <span class="f-op">(</span><span class="f-var">BAC</span><span class="f-op">–</span><span
+                      class="f-var">EV</span><span class="f-op">)</span><span class="f-op"> / </span><span
+                      class="f-op">(</span><span class="f-var">BAC</span><span class="f-op">–</span><span
+                      class="f-var">AC</span><span class="f-op">)</span>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:10px;color:#888;margin-bottom:4px">Để đạt EAC đã điều chỉnh:</div>
+                  <div class="formula-box" style="font-size:12px">
+                    <span class="f-result">TCPI</span> <span class="f-op">=</span>
+                    <span class="f-op">(</span><span class="f-var">BAC</span><span class="f-op">–</span><span
+                      class="f-var">EV</span><span class="f-op">)</span><span class="f-op"> / </span><span
+                      class="f-op">(</span><span class="f-var">EAC</span><span class="f-op">–</span><span
+                      class="f-var">AC</span><span class="f-op">)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-meaning">Mức CPI cần đạt được từ bây giờ đến cuối dự án.</div>
+              <div class="signals">
+                <span class="signal signal-bad">TCPI &gt; 1 → Phải làm hiệu quả hơn hiện tại</span>
+                <span class="signal signal-good">TCPI &lt; 1 → Đang thoải mái</span>
+              </div>
+              <div class="card-tip tip-red" style="margin-top:10px">💡 Đừng áp mẹo CPI/SPI cho TCPI: TCPI càng cao thì
+                phần còn lại càng khó đạt ngân sách.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     2. THREE-POINT
+══════════════════════════════════════════════ -->
+        <div class="section" id="threepoint">
+          <div class="section-head">
+            <div class="section-icon" style="background:#E3F0FF">📊</div>
+            <div>
+              <h2>Three-Point Estimating</h2>
+              <p>Ước lượng 3 điểm – PERT vs Triangular</p>
+            </div>
+          </div>
+
+          <table class="compare-table">
+            <tr>
+              <th style="width:180px">Phương pháp</th>
+              <th>Công thức</th>
+              <th style="width:160px">Độ lệch chuẩn</th>
+              <th>Khi nào dùng</th>
+              <th style="width:200px">💡 Mẹo thi</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="tag" style="background:#E3F0FF;color:#1565C0">⭐ PERT / Beta</div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Phổ biến nhất PMP</div>
+              </td>
+              <td>
+                <div class="mono">E = (O + 4M + P) / 6</div>
+                <div style="margin-top:8px;font-size:12px;color:#555">
+                  <strong>O</strong> = Optimistic (Lạc quan nhất)<br>
+                  <strong>M</strong> = Most Likely (Khả năng nhất)<br>
+                  <strong>P</strong> = Pessimistic (Bi quan nhất)<br>
+                  <em>M được nhân 4 vì quan trọng nhất</em>
+                </div>
+              </td>
+              <td>
+                <div class="mono">SD = (P – O) / 6</div>
+                <div style="font-size:12px;color:#888;margin-top:4px">Variance = SD²</div>
+              </td>
+              <td>Khi <strong>CÓ dữ liệu lịch sử</strong>, muốn coi trọng giá trị "khả năng nhất" hơn.</td>
+              <td style="background:#E3F0FF;font-size:12px">Đề không nói gì → <strong>dùng PERT</strong>. Đề nói "Beta
+                distribution" → chính xác là PERT.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="tag" style="background:#F3F4F6;color:#374151">Triangular</div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Đơn giản hơn</div>
+              </td>
+              <td>
+                <div class="mono">E = (O + M + P) / 3</div>
+                <div style="margin-top:8px;font-size:12px;color:#555">
+                  Trung bình đơn giản – M <strong>không</strong> được nhân trọng số.
+                </div>
+              </td>
+              <td>
+                <div style="font-size:12px;color:#888">Phức tạp hơn,<br>ít dùng trong thi</div>
+              </td>
+              <td>Khi <strong>KHÔNG có dữ liệu lịch sử</strong>, hoặc đề bài nói rõ "Triangular".</td>
+              <td style="font-size:12px">Đề nói "Triangular distribution" → phải dùng công thức này, không phải PERT.
+              </td>
+            </tr>
+          </table>
+
+          <div
+            style="background:#FFF8E1;border:1.5px solid #F0A500;border-radius:10px;padding:14px 18px;margin-top:14px;font-size:12.5px;line-height:1.7">
+            <strong>📐 Ví dụ tính nhanh:</strong> O=4, M=6, P=14<br>
+            PERT: E = (4 + 4×6 + 14) / 6 = <strong>42/6 = 7 ngày</strong> · SD = (14–4)/6 = <strong>1.67</strong><br>
+            Triangular: E = (4 + 6 + 14) / 3 = <strong>24/3 = 8 ngày</strong>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     3. COMMUNICATION CHANNELS
+══════════════════════════════════════════════ -->
+        <div class="section" id="comm">
+          <div class="section-head">
+            <div class="section-icon" style="background:#E0F7FA">📡</div>
+            <div>
+              <h2>Communication Channels</h2>
+              <p>Số kênh giao tiếp – hay ra đề tính toán</p>
+            </div>
+          </div>
+
+          <div class="comm-demo">
+            <div
+              style="text-align:center;font-size:13px;color:#888;font-weight:600;letter-spacing:.5px;text-transform:uppercase">
+              Công thức</div>
+            <div class="comm-formula-big">
+              Channels = <span class="highlight">N × (N – 1)</span> / 2
+            </div>
+            <div style="text-align:center;font-size:13px;color:#555">N = Tổng số người trong nhóm (kể cả PM)</div>
+
+            <div class="comm-examples">
+              <div class="comm-ex">
+                <div class="comm-ex-n">5</div>
+                <div class="comm-ex-label">người</div>
+                <div class="comm-ex-result">5×4/2 = <strong>10</strong> kênh</div>
+              </div>
+              <div class="comm-ex">
+                <div class="comm-ex-n">8</div>
+                <div class="comm-ex-label">người</div>
+                <div class="comm-ex-result">8×7/2 = <strong>28</strong> kênh</div>
+              </div>
+              <div class="comm-ex">
+                <div class="comm-ex-n">10</div>
+                <div class="comm-ex-label">người</div>
+                <div class="comm-ex-result">10×9/2 = <strong>45</strong> kênh</div>
+              </div>
+            </div>
+
+            <div class="comm-note">
+              ⚠️ <strong>Đề hay hỏi dạng:</strong> "Team tăng từ 5 lên 9 người, số kênh tăng thêm bao nhiêu?" → 36 – 10
+              = <strong>26 kênh</strong><br>
+              Thêm 1 người = tăng (N–1) kênh. VD: từ 5→6 người tăng thêm 5 kênh.
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     4. CONFLICT RESOLUTION
+══════════════════════════════════════════════ -->
+        <div class="section" id="conflict">
+          <div class="section-head">
+            <div class="section-icon" style="background:#FEE2E2">⚔️</div>
+            <div>
+              <h2>Conflict Resolution</h2>
+              <p>5 phong cách Thomas-Kilmann – thứ tự ưu tiên PMP</p>
+            </div>
+          </div>
+
+          <div class="conflict-list">
+            <div class="conflict-item">
+              <div class="conflict-name" style="background:#F0FFF4">
+                <span>✅</span>
+                <div>
+                  <div>Collaborate / Problem Solve</div>
+                  <span class="rank-badge rank-best">Tốt nhất</span>
+                </div>
+              </div>
+              <div class="conflict-desc">Cả hai bên cùng phân tích tận gốc vấn đề và tìm ra giải pháp
+                <strong>Win-Win</strong>. Đòi hỏi thời gian và sự tin tưởng lẫn nhau.
+              </div>
+              <div class="conflict-tip">💡 Thường phù hợp khi cần giải pháp bền vững, có đủ thời gian và cần cam kết từ
+                các bên. Từ khóa: <em>"best long-term solution"</em>, <em>"win-win"</em>.</div>
+            </div>
+
+            <div class="conflict-item">
+              <div class="conflict-name" style="background:#EFF6FF">
+                <span>🤝</span>
+                <div>
+                  <div>Compromise / Reconcile</div>
+                  <span class="rank-badge rank-good">Tốt thứ 2</span>
+                </div>
+              </div>
+              <div class="conflict-desc">Mỗi bên nhường một chút → đều mất một chút, đều được một chút. Không ai hoàn
+                toàn hài lòng (Lose-Lose nhỏ).</div>
+              <div class="conflict-tip">💡 Dùng khi không có thời gian Collaborate, hai bên ngang quyền. Không phải
+                Win-Win thực sự.</div>
+            </div>
+
+            <div class="conflict-item">
+              <div class="conflict-name" style="background:#FFFBEB">
+                <span>😌</span>
+                <div>
+                  <div>Smooth / Accommodate</div>
+                  <span class="rank-badge rank-ok">Tạm thời</span>
+                </div>
+              </div>
+              <div class="conflict-desc">Nhấn mạnh điểm chung, giảm thiểu sự khác biệt. Xoa dịu cảm xúc mà không giải
+                quyết vấn đề thực chất.</div>
+              <div class="conflict-tip">💡 Chỉ dùng để hạ nhiệt tạm thời, rồi phải quay lại Collaborate để giải quyết
+                thực sự.</div>
+            </div>
+
+            <div class="conflict-item">
+              <div class="conflict-name" style="background:#FEF2F2">
+                <span>🚪</span>
+                <div>
+                  <div>Withdraw / Avoid</div>
+                  <span class="rank-badge rank-bad">Tệ nhất</span>
+                </div>
+              </div>
+              <div class="conflict-desc">Từ chối đối mặt, hoãn giải quyết, hoặc rút khỏi tình huống. Vấn đề ngày càng
+                tích lũy và nặng hơn.</div>
+              <div class="conflict-tip">⚠️ Withdraw không giải quyết tận gốc nhưng có thể phù hợp để tạm dừng, thu thập
+                thêm thông tin hoặc hạ nhiệt trước khi quay lại xử lý.</div>
+            </div>
+
+            <div class="conflict-item">
+              <div class="conflict-name" style="background:#F5F3FF">
+                <span>👊</span>
+                <div>
+                  <div>Force / Direct</div>
+                  <span class="rank-badge rank-crisis">Khủng hoảng</span>
+                </div>
+              </div>
+              <div class="conflict-desc">Dùng quyền lực hoặc địa vị để áp đặt quan điểm. Win-Lose – một bên thắng hoàn
+                toàn.</div>
+              <div class="conflict-tip">💡 Chỉ dùng trong <strong>khủng hoảng khẩn cấp</strong> cần quyết định ngay (VD:
+                an toàn, deadline sắp cháy). Từ khóa: "immediate", "urgent", "crisis".</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     5. TYPES OF POWER
+══════════════════════════════════════════════ -->
+        <div class="section" id="power">
+          <div class="section-head">
+            <div class="section-icon" style="background:#FEF3C7">👑</div>
+            <div>
+              <h2>Types of Power</h2>
+              <p>5 loại quyền lực của PM – PMP ưa Expert và Reward nhất</p>
+            </div>
+          </div>
+
+          <div class="power-grid">
+            <div class="power-card" style="border-top:3px solid #1A6B2A">
+              <div class="power-icon">🎓</div>
+              <div class="power-name">Expert Power</div>
+              <div class="power-source">Từ kiến thức và kỹ năng chuyên môn vượt trội. Team nghe vì PM thực sự giỏi hơn
+                về mặt kỹ thuật.</div>
+              <span class="power-verdict verdict-love">⭐ PMP ưa nhất</span>
+            </div>
+
+            <div class="power-card" style="border-top:3px solid #1A6B2A">
+              <div class="power-icon">🏆</div>
+              <div class="power-name">Reward Power</div>
+              <div class="power-source">Từ khả năng khen thưởng: tiền thưởng, khen ngợi trước team, thăng chức, giao dự
+                án thú vị.</div>
+              <span class="power-verdict verdict-love">⭐ PMP ưa nhất</span>
+            </div>
+
+            <div class="power-card" style="border-top:3px solid #C8922A">
+              <div class="power-icon">🪪</div>
+              <div class="power-name">Formal / Legitimate Power</div>
+              <div class="power-source">Từ chức danh, vị trí tổ chức (được ghi trong Project Charter). Team nghe vì "sếp
+                bảo thế".</div>
+              <span class="power-verdict verdict-ok">⚠️ Dùng được</span>
+            </div>
+
+            <div class="power-card" style="border-top:3px solid #C8922A">
+              <div class="power-icon">✨</div>
+              <div class="power-name">Referent Power</div>
+              <div class="power-source">Từ sự ngưỡng mộ, tôn trọng cá nhân (Charisma). Team làm vì thấy PM là người đáng
+                học hỏi.</div>
+              <span class="power-verdict verdict-ok">⚠️ Dùng được</span>
+            </div>
+
+            <div class="power-card" style="border-top:3px solid #C0392B">
+              <div class="power-icon">⚡</div>
+              <div class="power-name">Penalty / Coercive Power</div>
+              <div class="power-source">Từ khả năng gây hậu quả tiêu cực: phạt, kỷ luật, cắt lương, sa thải. Team làm vì
+                sợ.</div>
+              <span class="power-verdict verdict-no">❌ PMP không khuyến khích</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     6. MOTIVATION THEORIES
+══════════════════════════════════════════════ -->
+        <div class="section" id="motivation">
+          <div class="section-head">
+            <div class="section-icon" style="background:#F3E5F5">🧠</div>
+            <div>
+              <h2>Motivation Theories</h2>
+              <p>5 lý thuyết hay thi – chú ý các EXAM TRAP</p>
+            </div>
+          </div>
+
+          <div class="motivation-grid">
+
+            <div class="motiv-card">
+              <div class="motiv-header" style="background:#E8EAF6">
+                <div class="motiv-num" style="background:#3949AB">1</div>
+                <div>
+                  <div class="motiv-title">Maslow's Hierarchy of Needs</div>
+                  <div class="motiv-subtitle">Tháp nhu cầu Maslow</div>
+                </div>
+              </div>
+              <div class="motiv-body">
+                Phải đáp ứng tầng <strong>dưới</strong> trước mới lên được tầng <strong>trên</strong>:<br><br>
+                5️⃣ Self-Actualization – Tự thể hiện bản thân (Đỉnh)<br>
+                4️⃣ Esteem – Được tôn trọng, công nhận<br>
+                3️⃣ Social – Tình bạn, thuộc về một nhóm<br>
+                2️⃣ Safety – An toàn, ổn định việc làm<br>
+                1️⃣ Physiological – Ăn, ngủ, nghỉ (Đáy)
+              </div>
+              <div class="motiv-trap" style="background:#E8EAF6;border-color:#3949AB;color:#1A237E">
+                💡 PM cần đảm bảo nhu cầu cơ bản (lương đủ sống, môi trường an toàn) trước khi kỳ vọng team "cháy hết
+                mình" vì đam mê.
+              </div>
+            </div>
+
+            <div class="motiv-card">
+              <div class="motiv-header" style="background:#FCE4EC">
+                <div class="motiv-num" style="background:#C62828">2</div>
+                <div>
+                  <div class="motiv-title">Herzberg's Two-Factor Theory</div>
+                  <div class="motiv-subtitle">Lý thuyết hai nhân tố</div>
+                </div>
+              </div>
+              <div class="motiv-body">
+                <strong>Hygiene Factors</strong> (Vệ sinh): Lương, môi trường, chính sách...<br>
+                → Thiếu gây <em>bất mãn</em>, nhưng đủ rồi thì chỉ "không bất mãn" – <strong>KHÔNG tạo động lực thực
+                  sự</strong>.<br><br>
+                <strong>Motivators</strong> (Động lực thật): Thành tích, công nhận, thăng tiến, công việc thú vị...<br>
+                → Mới thực sự tạo động lực và sự hài lòng.
+              </div>
+              <div class="motiv-trap" style="background:#FCE4EC;border-color:#C62828;color:#7B1A12">
+                ⚠️ <strong>EXAM TRAP:</strong> "Tăng lương" là Hygiene Factor → <strong>giảm bất mãn</strong>, KHÔNG
+                phải tạo động lực. Đây là bẫy cực phổ biến trong đề thi PMP!
+              </div>
+            </div>
+
+            <div class="motiv-card">
+              <div class="motiv-header" style="background:#E0F2F1">
+                <div class="motiv-num" style="background:#00695C">3</div>
+                <div>
+                  <div class="motiv-title">McGregor's Theory X and Y</div>
+                  <div class="motiv-subtitle">Hai cách nhìn về con người</div>
+                </div>
+              </div>
+              <div class="motiv-body">
+                <strong>Theory X</strong> (Tiêu cực): Người lười, né tránh công việc, cần kiểm soát chặt, dùng phần
+                thưởng/hình phạt.<br><br>
+                <strong>Theory Y</strong> (Tích cực): Người tự giác, thích được giao trách nhiệm, tự thúc đẩy bản thân,
+                sáng tạo khi được trao quyền.
+              </div>
+              <div class="motiv-trap" style="background:#E0F2F1;border-color:#00695C;color:#003D36">
+                💡 PMP ủng hộ <strong>Theory Y</strong>. Agile hoàn toàn dựa trên Theory Y. PM nên tin tưởng team và
+                trao quyền thay vì micro-manage.
+              </div>
+            </div>
+
+            <div class="motiv-card">
+              <div class="motiv-header" style="background:#FFF3E0">
+                <div class="motiv-num" style="background:#E65100">4</div>
+                <div>
+                  <div class="motiv-title">McClelland's 3 Needs Theory</div>
+                  <div class="motiv-subtitle">Ba nhu cầu cốt lõi</div>
+                </div>
+              </div>
+              <div class="motiv-body">
+                <strong>nAch (Achievement)</strong>: Thích thành tích, chiến thắng, vượt thách thức. Tự đặt mục tiêu
+                cao.<br><br>
+                <strong>nPow (Power)</strong>: Thích quyền lực, ảnh hưởng người khác, dẫn dắt.<br><br>
+                <strong>nAff (Affiliation)</strong>: Thích được thuộc về nhóm, tránh xung đột, cần sự chấp thuận.
+              </div>
+              <div class="motiv-trap" style="background:#FFF3E0;border-color:#E65100;color:#7C2D00">
+                💡 PM nên có <strong>nAch cao</strong>. Cẩn thận với người có nAff cao – họ thường né tránh conflict và
+                khó đưa ra quyết định khó.
+              </div>
+            </div>
+
+            <div class="motiv-card">
+              <div class="motiv-header" style="background:#F3E5F5">
+                <div class="motiv-num" style="background:#6A1B9A">5</div>
+                <div>
+                  <div class="motiv-title">Vroom's Expectancy Theory</div>
+                  <div class="motiv-subtitle">Lý thuyết kỳ vọng</div>
+                </div>
+              </div>
+              <div class="motiv-body" style="padding-bottom:8px">
+                <div class="formula-box" style="font-size:13px;margin-bottom:12px">
+                  <span class="f-result">Động lực</span> <span class="f-op">=</span> <span class="f-var">E</span> <span
+                    class="f-op">×</span> <span class="f-var">I</span> <span class="f-op">×</span> <span
+                    class="f-var">V</span>
+                </div>
+                <strong>E – Expectancy</strong>: Tôi nỗ lực → Tôi có đạt kết quả không?<br>
+                <strong>I – Instrumentality</strong>: Tôi đạt kết quả → Tôi có được thưởng không?<br>
+                <strong>V – Valence</strong>: Phần thưởng đó có giá trị với TÔI không?
+              </div>
+              <div class="motiv-trap" style="background:#F3E5F5;border-color:#6A1B9A;color:#2E0666">
+                💡 Cả 3 yếu tố phải dương thì mới có động lực. Thưởng sai thứ (Valence thấp) = vô tác dụng dù thưởng
+                nhiều.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     7. CONTRACT TYPES
+══════════════════════════════════════════════ -->
+        <div class="section" id="contracts">
+          <div class="section-head">
+            <div class="section-icon" style="background:#E8F5E9">📝</div>
+            <div>
+              <h2>Contract Types</h2>
+              <p>Ai chịu rủi ro? – Fixed Price &lt;→ Cost Reimbursable</p>
+            </div>
+          </div>
+
+          <table class="contract-table">
+            <tr>
+              <th style="width:200px">Loại hợp đồng</th>
+              <th style="width:130px">Rủi ro Buyer</th>
+              <th style="width:130px">Rủi ro Seller</th>
+              <th>Mô tả & Khi dùng</th>
+              <th style="width:200px">💡 Mẹo thi</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="contract-name">FFP</div>
+                <div class="contract-vi">Firm Fixed Price – Giá cứng</div>
+              </td>
+              <td><span class="risk-pill risk-low">✅ Thấp</span></td>
+              <td><span class="risk-pill risk-high">❌ Cao</span></td>
+              <td>Buyer trả một giá cố định không đổi. Nếu Seller tốn thêm → Seller chịu. Scope phải rõ ràng 100%.</td>
+              <td style="font-size:12px">Scope rõ ràng + Buyer muốn kiểm soát chi phí → FFP. Phổ biến nhất trong thi
+                PMP.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="contract-name">FPIF</div>
+                <div class="contract-vi">Fixed Price + Incentive Fee</div>
+              </td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td>Có giá cố định nhưng thêm cơ chế thưởng/phạt. Có <strong>PTA (Point of Total Assumption)</strong> –
+                điểm Seller chịu toàn bộ rủi ro vượt ngân sách.</td>
+              <td style="font-size:12px">Nhớ khái niệm <strong>PTA</strong>! Đề hay hỏi: vượt PTA thì ai chịu? → Seller.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="contract-name">CPFF</div>
+                <div class="contract-vi">Cost Plus Fixed Fee</div>
+              </td>
+              <td><span class="risk-pill risk-high">❌ Cao</span></td>
+              <td><span class="risk-pill risk-low">✅ Thấp</span></td>
+              <td>Buyer thanh toán toàn bộ chi phí thực tế + trả thêm một khoản phí cố định cho Seller. Seller không có
+                động lực tiết kiệm.</td>
+              <td style="font-size:12px">Dùng khi scope rất mơ hồ, R&D. Buyer chịu rủi ro cao nhất trong nhóm CR.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="contract-name">CPIF</div>
+                <div class="contract-vi">Cost Plus Incentive Fee</div>
+              </td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td>Buyer trả chi phí thực tế + phí thưởng theo hiệu suất. Seller có động lực tiết kiệm vì được chia phần
+                tiết kiệm được.</td>
+              <td style="font-size:12px">Tốt nhất trong nhóm Cost Reimbursable vì <strong>align lợi ích hai
+                  bên</strong>.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="contract-name">T&M</div>
+                <div class="contract-vi">Time and Material</div>
+              </td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td><span class="risk-pill risk-mid">⚠️ Trung bình</span></td>
+              <td>Trả theo giờ công + vật liệu thực tế. Scope linh hoạt, thường có <strong>NTE (Not-to-Exceed)</strong>
+                để giới hạn tổng chi phí.</td>
+              <td style="font-size:12px">Agile projects thường dùng T&M vì scope thay đổi liên tục. Cần NTE để kiểm
+                soát.</td>
+            </tr>
+          </table>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+            <div style="background:#E8F5E9;border-radius:10px;padding:14px 18px;font-size:12.5px;line-height:1.7">
+              <strong style="color:#1A6B2A">📊 Spectrum rủi ro:</strong><br>
+              FFP → FPIF → T&M → CPIF → CPFF<br>
+              <em>Rủi ro Buyer tăng dần từ trái → phải</em>
+            </div>
+            <div style="background:#FFF8E1;border-radius:10px;padding:14px 18px;font-size:12.5px;line-height:1.7">
+              <strong style="color:#C8922A">💡 Nhớ nhanh:</strong><br>
+              Fixed Price = Seller chịu rủi ro<br>
+              Cost Reimbursable = Buyer chịu rủi ro
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+     8. SCENARIO TABLE
+══════════════════════════════════════════════ -->
+        <div class="section" id="scenarios">
+          <div class="section-head">
+            <div class="section-icon" style="background:#E8F5E9">🎯</div>
+            <div>
+              <h2>Scenario Quick-Decision</h2>
+              <p>10 tình huống hay gặp trong đề – nhận dạng & trả lời ngay</p>
+            </div>
+          </div>
+
+          <div class="scenario-list">
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Sponsor/Stakeholder yêu cầu thêm feature giữa chừng</div>
+                <div class="scenario-keywords">'add scope' · 'new requirement' · 'additional feature'</div>
+                <div class="scenario-answer">Đánh giá impact lên Time/Cost/Risk trước, sau đó submit <strong>Change
+                    Request</strong>. Không tự ý làm theo lời yêu cầu miệng.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Evaluate Impact<br>→ Submit CR</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Stakeholder phàn nàn không nhận được thông tin</div>
+                <div class="scenario-keywords">'not informed' · 'unaware' · 'surprised by change'</div>
+                <div class="scenario-answer">Review và cập nhật <strong>Communications Management Plan</strong> và
+                  <strong>Stakeholder Engagement Plan</strong>.
+                </div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Update<br>Comm Plan</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Team member cãi nhau, xung đột</div>
+                <div class="scenario-keywords">'conflict' · 'disagreement' · 'team argument'</div>
+                <div class="scenario-answer">Facilitate cuộc thảo luận để cả hai tìm ra giải pháp Win-Win →
+                  <strong>Collaborate / Problem Solve</strong>.
+                </div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Collaborate<br>/ Problem Solve</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Dự án đang Over Budget (CPI &lt; 1)</div>
+                <div class="scenario-keywords">'over budget' · 'cost overrun' · 'CPI &lt; 1'</div>
+                <div class="scenario-answer">Phân tích nguyên nhân gốc rễ trước, sau đó tính <strong>EAC mới</strong>,
+                  đánh giá options và submit CR nếu cần.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Analyze Root<br>Cause → EAC</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">PM được yêu cầu làm việc trái đạo đức</div>
+                <div class="scenario-keywords">'unethical' · 'bribe' · 'falsify' · 'hide information'</div>
+                <div class="scenario-answer">Từ chối thẳng thắn và báo cáo lên cấp trên phù hợp. Tuân thủ <strong>PMI
+                    Code of Ethics</strong> tuyệt đối.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Refuse &<br>Report Up</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Cần rút ngắn tiến độ mà không đổi scope</div>
+                <div class="scenario-keywords">'shorten schedule' · 'compress timeline' · 'deliver earlier'</div>
+                <div class="scenario-answer"><strong>Crashing</strong>: Thêm người/tiền (tốn thêm chi phí) hoặc
+                  <strong>Fast Tracking</strong>: Làm song song (tăng rủi ro). Phải chọn phương án phù hợp.
+                </div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Crash or<br>Fast Track</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">PM mới vừa tiếp nhận dự án đang chạy</div>
+                <div class="scenario-keywords">'new PM' · 'just assigned' · 'taking over project'</div>
+                <div class="scenario-answer">Việc đầu tiên: Review <strong>Project Charter</strong> và <strong>Project
+                    Management Plan</strong> hiện tại. Không tự ý thay đổi gì ngay.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Review Charter<br>& PM Plan First</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Phát hiện key resource sắp rời dự án</div>
+                <div class="scenario-keywords">'key member leaving' · 'resource risk' · 'single point of failure'</div>
+                <div class="scenario-answer">Đây là rủi ro → Cập nhật <strong>Risk Register</strong>, lập <strong>Risk
+                    Response Plan</strong> (knowledge transfer, backup resource).</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Update Risk<br>Register → Plan</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Dự án sắp trễ hạn, sếp ép bỏ qua testing</div>
+                <div class="scenario-keywords">'skip testing' · 'reduce quality' · 'meet deadline'</div>
+                <div class="scenario-answer">Từ chối. Giải thích rủi ro về chất lượng và chi phí sửa lỗi sau. Đề xuất
+                  phương án khác (Crash, Fast Track) thay vì bỏ quality.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Refuse to<br>Skip Quality</div>
+              </div>
+            </div>
+
+            <div class="scenario-item">
+              <div class="scenario-left">
+                <div class="scenario-title">Team tự thêm tính năng "hay ho" không có trong scope</div>
+                <div class="scenario-keywords">'gold plating' · 'added features' · 'scope not approved'</div>
+                <div class="scenario-answer">Dừng lại ngay. <strong>Gold Plating</strong> là tệ trong PMP – tốn thời
+                  gian, tạo rủi ro mới, không được approve. Yêu cầu Submit CR nếu muốn thêm.</div>
+              </div>
+              <div class="scenario-right">
+                <div class="answer-pill">Stop Gold<br>Plating → CR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /page -->
